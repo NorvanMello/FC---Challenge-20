@@ -32,6 +32,17 @@
     box-sizing: border-box;
 }
 
+:focus-visible {
+    outline: 2px solid var(--color-grey-900);
+    outline-offset: 2px;
+}
+
+.popover a:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+    /* border-radius: 4px; */
+}
+
 body {
     background-color: var(--color-grey-200);
 }
@@ -148,12 +159,14 @@ body {
     height: 32px;
     background-color: var(--color-grey-200);
     border-radius: 50%;
+    border: none;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     cursor: pointer;
+
 }
 
 .share:hover {

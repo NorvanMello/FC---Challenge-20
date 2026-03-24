@@ -46,22 +46,34 @@
               </div>
               
 
-              <div class="share">
+              <button class="share" aria-label="Share article">
                 <img src="./images/icon-share.svg" alt="">
-              </div>
+              </button>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="popover">
+      <div class="popover" role="dialog">
+        <!-- role="dialog" = “This is an interactive popup -->
+
+        <!-- 
+        Another option:
+
+        <div class="popover" aria-hidden="true">
+
+        Then in JS:
+
+        popOver.setAttribute("aria-hidden", !isOpen);
+        
+        -->
         <div class="popover-content">
           <p>SHARE</p>
 
           <div class="popover-social-media">
-            <img src="./images/icon-facebook.svg" alt="">
-            <img src="./images/icon-twitter.svg" alt="">
-            <img src="./images/icon-pinterest.svg" alt="">
+            <a href="#" aria-label="Share on Facebook"><img src="./images/icon-facebook.svg" alt=""></a>
+            <a href="#" aria-label="Share on Twitter"><img src="./images/icon-twitter.svg" alt=""></a>
+            <a href="#" aria-label="Share on Pinterest"><img src="./images/icon-pinterest.svg" alt=""></a>
           </div>
 
           <div class="share share-inside">

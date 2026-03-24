@@ -36,16 +36,27 @@
             </p>
 
             <div class="button-container">
-              <div class="person-info">
-                <img src="./images/avatar-michelle.jpg" alt="">
+              <figure class="person-info">
+                <img src="./images/avatar-michelle.jpg" alt="Michelle Appleton — author avatar">
 
-                <div class="person-text">
-                  <p class="name">Michelle Appleton</p>
-                  <p class="date">28 Jun 2020</p>
+                <figcaption class="person-text">
+                  <span class="name">Michelle Appleton</span>
+                  <time class="date">28 Jun 2020</time>
+                </figcaption>
+              </figure>
+
+              <!-- 
+              Alternative - Syntax:
+
+                <div class="author-block">
+                  <img src="./images/avatar-michelle.jpg" alt="Michelle Appleton — author avatar">
+                  <address class="author-info"> address indicates person/organization responsible
+                    Michelle Appleton
+                    <time datetime="2020-06-28">28 Jun 2020</time>
+                  </address>
                 </div>
-              </div>
               
-
+              -->
               <button class="share" aria-label="Share article">
                 <img src="./images/icon-share.svg" alt="">
               </button>
@@ -58,14 +69,13 @@
         <!-- role="dialog" = “This is an interactive popup -->
 
         <!-- 
-        Another option:
+          Another option:
 
-        <div class="popover" aria-hidden="true">
+          <div class="popover" aria-hidden="true">
 
-        Then in JS:
+          Then in JS:
 
-        popOver.setAttribute("aria-hidden", !isOpen);
-        
+          popOver.setAttribute("aria-hidden", !isOpen);
         -->
         <div class="popover-content">
           <p>SHARE</p>
@@ -76,9 +86,9 @@
             <a href="#" aria-label="Share on Pinterest"><img src="./images/icon-pinterest.svg" alt=""></a>
           </div>
 
-          <div class="share share-inside">
+          <button class="share share-inside">
             <img src="./images/icon-share.svg" alt="">
-          </div>
+          </button>
         </div>
       </div>
     </div>

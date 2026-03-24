@@ -1,21 +1,26 @@
 const popOver = document.querySelector(".popover");
 const shareButtons = document.querySelectorAll(".share");
 
+let activeTrigger = null;
+
 
 shareButtons.forEach(button => {
     button.addEventListener("click", (event) => {
          if (!popOver) return;
 
         event.stopPropagation();
+
+        activeTrigger = button;
         
         const isOpen = popOver?.classList.toggle("active");
         button.setAttribute("aria-expanded", String(isOpen)) //Making sure it is a string of true or false
 
         if(isOpen) {
             const firstItem = popOver.querySelector("a, button");
-            firstItem?.focus();
+            firstItem?.focus();   
         } else {
-            button.focus();
+            activeTrigger.focus();
+            activeTrigger = null;
         }
 
     });
@@ -29,6 +34,12 @@ document.addEventListener("click", (event) => {
     if (!isClickInside) {
         popOver.classList.remove("active");
 
-        shareButtons[0]?.focus();
+        shareButtons.forEach(button => {
+            button.setAttribute("aria-expanded", "false");
+        });
+
+
+        activeTrigger?.focus();
+        activeTrigger = null;
     }
 });

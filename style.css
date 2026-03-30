@@ -100,7 +100,7 @@ body {
     width: 100%;
 }
 
-.left h2 {
+.left h1 {
     font: var(--text-preset-1-bold);
     letter-spacing: var(--text-preset-1-bold-letter-spacing);
     color: var(--color-grey-900);

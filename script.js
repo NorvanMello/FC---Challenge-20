@@ -3,59 +3,64 @@ const shareButtons = document.querySelectorAll(".share");
 
 let activeTrigger = null;
 
+function setExpandedState(isExpanded) {
+  shareButtons.forEach(button => {
+    button.setAttribute("aria-expanded", String(isExpanded));
+  });
+}
+
+function openPopover(triggerButton) {
+  if (!popOver) return;
+
+  popOver.classList.add("active");
+  setExpandedState(true);
+  activeTrigger = triggerButton;
+
+  const firstItem = popOver.querySelector("a, button");
+  firstItem?.focus();
+}
+
+function closePopover() {
+  if (!popOver) return;
+
+  popOver.classList.remove("active");
+  setExpandedState(false);
+
+  activeTrigger?.focus();
+  activeTrigger = null;
+}
 
 shareButtons.forEach(button => {
-    button.addEventListener("click", (event) => {
-         if (!popOver) return;
+  button.addEventListener("click", (event) => {
+    if (!popOver) return;
+    event.stopPropagation();
 
-        event.stopPropagation();
+    const isOpen = popOver.classList.contains("active");
 
-        activeTrigger = button;
-        
-        const isOpen = popOver?.classList.toggle("active");
-        button.setAttribute("aria-expanded", String(isOpen)) //Making sure it is a string of true or false
-
-        if(isOpen) {
-            const firstItem = popOver.querySelector("a, button");
-            firstItem?.focus();
-            
-        } else {
-            activeTrigger.focus();
-            activeTrigger = null;
-        }
-
-    });
+    if (isOpen) {
+      closePopover();
+    } else {
+      openPopover(button);
+    }
+  });
 });
 
 document.addEventListener("click", (event) => {
-    if(!popOver) return
+  if (!popOver) return;
 
-    const isClickInside = (popOver?.contains(event.target) || [...shareButtons].some(button => button.contains(event.target)));
+  const isClickInside =
+    popOver.contains(event.target) ||
+    [...shareButtons].some(button => button.contains(event.target));
 
-    if (!isClickInside) {
-        popOver.classList.remove("active");
-
-        shareButtons.forEach(button => {
-            button.setAttribute("aria-expanded", "false");
-        });
-
-
-        activeTrigger?.focus();
-        activeTrigger = null;
-    }
+  if (!isClickInside && popOver.classList.contains("active")) {
+    closePopover();
+  }
 });
 
 document.addEventListener("keydown", (event) => {
-    if (!popOver) return;
+  if (!popOver) return;
 
-    if (event.key === "Escape" && popOver.classList.contains("active")) {
-        popOver.classList.remove("active");
-
-        shareButtons.forEach(button => {
-            button.setAttribute("aria-expanded", "false");
-        });
-
-        activeTrigger?.focus();
-        activeTrigger = null;
-    }
+  if (event.key === "Escape" && popOver.classList.contains("active")) {
+    closePopover();
+  }
 });

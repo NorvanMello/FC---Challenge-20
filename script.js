@@ -18,7 +18,7 @@ shareButtons.forEach(button => {
         if(isOpen) {
             const firstItem = popOver.querySelector("a, button");
             firstItem?.focus();
-
+            
         } else {
             activeTrigger.focus();
             activeTrigger = null;
